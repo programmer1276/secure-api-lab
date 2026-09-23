@@ -101,14 +101,14 @@ curl -X POST http://127.0.0.1:5000/auth/login \
 **3. Получение данных (с токеном)**
 ```bash
 curl -X GET http://127.0.0.1:5000/api/data \
-  -H "Authorization: Bearer <ВАШ_JWT_ТОКЕН>"
+  -H "Authorization: Bearer <JWT_ТОКЕН>"
 ```
 
 **4. Добавление данных (с токеном)**
 ```bash
 curl -X POST http://127.0.0.1:5000/api/data \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer <ВАШ_JWT_ТОКЕН>" \
+  -H "Authorization: Bearer <JWT_ТОКЕН>" \
   -d '{"title": "Новый пост", "content": "Текст поста"}'
 ```
 
