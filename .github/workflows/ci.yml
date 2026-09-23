@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
@@ -23,16 +23,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # --- SAST (Static Application Security Testing) ---
-      # Используем bandit, как указано в задании для Python
+      
       - name: SAST Scan (Bandit)
         run: |
           echo "Запуск статического анализа кода (SAST) с помощью Bandit..."
           bandit -r . -f json -o bandit-report.json || true
           bandit -r . -f screen
 
-      # --- SCA (Software Composition Analysis) ---
-      # Используем OWASP Dependency-Check, как указано в задании
+     
       - name: SCA Scan (OWASP Dependency-Check)
         uses: dependency-check/Dependency-Check_Action@main
         id: depcheck
@@ -45,9 +43,9 @@ jobs:
             --exclude '**/venv/**'
             --failOnCVSS 7
 
-      # Сохраняем отчеты как артефакты, чтобы их можно было скачать
+     
       - name: Upload Security Reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: security-reports
           path: |
