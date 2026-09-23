@@ -137,4 +137,4 @@ def create_data(current_user):
     return jsonify({'message': 'Данные успешно добавлены', 'id': new_item.id}), 201
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=5000)
